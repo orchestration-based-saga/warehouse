@@ -1,13 +1,14 @@
 package com.saga.warehouse.application.controller;
 
-import com.saga.warehouse.application.controller.api.PackageRequest;
+import com.saga.warehouse.application.controller.api.request.PackageIdsRequest;
+import com.saga.warehouse.application.controller.api.request.PackageRequest;
+import com.saga.warehouse.application.controller.api.response.WarehouseItemResponse;
 import com.saga.warehouse.application.service.WarehouseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/warehouse-management-system")
@@ -20,6 +21,12 @@ public class WarehouseController {
     public ResponseEntity<Void> incomingDelivery(@RequestBody PackageRequest pack) {
         warehouseService.savePackage(pack);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<WarehouseItemResponse>> getAllItems(@RequestBody PackageIdsRequest packageIds) {
+        List<WarehouseItemResponse> merchantInventories = warehouseService.getAllItems(packageIds);
+        return ResponseEntity.ok().body(merchantInventories);
     }
 
 }

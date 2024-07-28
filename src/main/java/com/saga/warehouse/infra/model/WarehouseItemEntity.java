@@ -1,9 +1,7 @@
 package com.saga.warehouse.infra.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.saga.warehouse.infra.model.enums.ItemStatus;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity(name = "WarehouseItem")
@@ -19,5 +17,9 @@ public class WarehouseItemEntity {
     Integer id;
     String courierName;
     String packageId;
-    Integer amount;
+    @OneToOne
+    @JoinColumn(name = "merchant_inventory_id", referencedColumnName = "merchant_inventory_id")
+    MerchantProductEntity product;
+    @Enumerated(EnumType.STRING)
+    ItemStatus status;
 }
