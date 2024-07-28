@@ -9,4 +9,6 @@ public interface WarehouseRepositoryApi {
     void savePackage(Package pack);
 
     List<Package> findByPackageIdIn(List<String> packageIds);
+
+    void deliverPackages(List<String> packageIds);
 }

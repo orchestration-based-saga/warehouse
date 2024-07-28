@@ -5,6 +5,7 @@ import com.saga.warehouse.application.controller.api.request.PackageRequest;
 import com.saga.warehouse.application.controller.api.response.WarehouseItemResponse;
 import com.saga.warehouse.application.mappers.PackageMapper;
 import com.saga.warehouse.domain.in.WarehouseDomainServiceApi;
+import com.saga.warehouse.domain.model.DeliveredPackage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,9 @@ public class WarehouseService {
 
     public List<WarehouseItemResponse> getAllItems(PackageIdsRequest request) {
         return mapper.toResponse(warehouseDomainServiceApi.getAllItems(request.packageIds()));
+    }
+
+    public List<DeliveredPackage> triggerEngine(List<String> packageIds){
+        return warehouseDomainServiceApi.deliverItemsToWarehouse(packageIds);
     }
 }

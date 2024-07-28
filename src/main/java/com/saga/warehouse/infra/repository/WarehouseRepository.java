@@ -29,4 +29,11 @@ public class WarehouseRepository implements WarehouseRepositoryApi {
     public List<Package> findByPackageIdIn(List<String> packageIds) {
         return mapper.toDomain(warehouseItemEntityRepository.findByPackageIdIn(packageIds));
     }
+
+    @Override
+    public void deliverPackages(List<String> packageIds) {
+        List<WarehouseItemEntity> items = warehouseItemEntityRepository.findByPackageIdIn(packageIds);
+        items.forEach(item -> item.setStatus(ItemStatus.DELIVERED));
+        warehouseItemEntityRepository.saveAll(items);
+    }
 }
