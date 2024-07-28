@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: warehouse
+  datasource:
+    url: jdbc:postgresql://localhost:5431/warehousedb
+    password: postgres
+    username: postgres
+
