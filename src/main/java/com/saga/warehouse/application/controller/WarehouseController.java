@@ -24,7 +24,7 @@ public class WarehouseController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @PostMapping("get-items")
     public ResponseEntity<List<WarehouseItemResponse>> getAllItems(@RequestBody PackageIdsRequest packageIds) {
         List<WarehouseItemResponse> merchantInventories = warehouseService.getAllItems(packageIds);
         return ResponseEntity.ok().body(merchantInventories);
