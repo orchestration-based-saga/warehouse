@@ -19,10 +19,10 @@ public class WarehouseRepository implements WarehouseRepositoryApi {
     private final WarehouseEntityMapper mapper;
 
     @Override
-    public void savePackage(Package pack) {
+    public Package savePackage(Package pack) {
         WarehouseItemEntity item = mapper.toEntity(pack);
         item.setStatus(ItemStatus.IN_DELIVERY);
-        warehouseItemEntityRepository.save(item);
+        return mapper.toDomain(warehouseItemEntityRepository.save(item));
     }
 
     @Override

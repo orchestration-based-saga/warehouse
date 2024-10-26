@@ -18,7 +18,8 @@ public class WarehouseDomainService implements WarehouseDomainServiceApi {
 
     @Override
     public void savePackage(Package pack) {
-        warehouseRepositoryApi.savePackage(pack);
+        pack = warehouseRepositoryApi.savePackage(pack);
+        deliverItemsToWarehouse(List.of(pack.packageId()));
     }
 
     @Override

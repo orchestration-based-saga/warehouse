@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface WarehouseRepositoryApi {
 
-    void savePackage(Package pack);
+    Package savePackage(Package pack);
 
     List<Package> findByPackageIdIn(List<String> packageIds);
 
