@@ -1,0 +1,1 @@
+alter table warehouse_item add unique (package_id);
